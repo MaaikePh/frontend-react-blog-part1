@@ -3,9 +3,9 @@ import logo from './assets/logo-medium.png'
 import {NavLink, Route, Routes} from 'react-router-dom';
 import Home from './pages/home/Home.jsx';
 import Overview from './pages/overview/Overview.jsx';
-import NewPost from "./pages/new-post/NewPost.jsx";
-import NotFound from "./pages/not-found/NotFound.jsx";
-import DetailBlogPage from "./pages/detail-blog-page/DetailBlogPage.jsx";
+import NewPost from './pages/new-post/NewPost.jsx';
+import NotFound from './pages/not-found/NotFound.jsx';
+import DetailBlogPage from './pages/detail-blog-page/DetailBlogPage.jsx';
 
 function App() {
     return (
