@@ -42,8 +42,8 @@ function App() {
                 <Route path='/' element={<Home/>}/>
                 <Route path='/overview' element={<Overview/>}/>
                 <Route path='/new-post' element={<NewPost/>}/>
-                <Route path='/404' element={<NotFound/>}/>
                 <Route path='/posts/:id' element={<DetailBlogPage />}/>
+                <Route path='*' element={<NotFound/>}/>
             </Routes>
         </>
     )
