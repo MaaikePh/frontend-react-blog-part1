@@ -1,0 +1,23 @@
+.blog-page {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    margin: 30px 100px;
+    color: var(--color-secondary);
+}
+
+.read-time {
+    color: var(--color-tertiary);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.read-time img {
+    width: 15px;
+}
+
+.blog-links {
+    font-weight: bold;
+}

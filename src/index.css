@@ -52,3 +52,8 @@ h4 {
 p {
   margin-block: 0.5em;
 }
+
+.blog-links {
+  color: var(--color-primary);
+  text-decoration: none;
+}
