@@ -43,6 +43,7 @@ function App() {
                 <Route path='/overview' element={<Overview/>}/>
                 <Route path='/new-post' element={<NewPost/>}/>
                 <Route path='/posts/:id' element={<DetailBlogPage />}/>
+                <Route path='/not-found' element={<NotFound />}/>
                 <Route path='*' element={<NotFound/>}/>
             </Routes>
         </>

@@ -2,12 +2,16 @@ import './DetailBlogPage.css';
 import posts from '/src/constants/data.json';
 import clock from '/src/assets/klokje.png';
 import dateFormatter from '../../helpers/dateFormatter.js';
-import {Link, useParams} from 'react-router-dom';
+import {Link, Navigate, useParams} from 'react-router-dom';
 
 function DetailBlogPage() {
     const {id} = useParams();
     const postId = Number(id);
     const post = posts.find(post => post.id === postId);
+
+    if (!post) {
+        return <Navigate to='/not-found' replace />
+    }
 
     return (
         <article className='blog-page'>
