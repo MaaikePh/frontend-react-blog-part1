@@ -32,15 +32,15 @@ function Overview() {
         fetchBlogPosts();
     }, []);
 
-    if (loading) return <h1>Loading...</h1>;
-    if (error) return <h1>Geen blogposts gevonden.</h1>;
+    if (loading) return <h1 className='overview overview-title'>Loading...</h1>;
+    if (error) return <h1 className='overview overview-title'>Geen blogposts gevonden.</h1>;
 
     return (
-        <div className="overview">
+        <div className='overview'>
             <h1 className='overview-title'>Bekijk alle {posts.length} posts op het platform</h1>
             <section>
                 {posts.length === 0 && !loading && !error && (
-                    <h1> Er zijn nog geen blogposts.</h1>
+                    <h1 className='overview-title'> Er zijn nog geen blogposts.</h1>
                 )}
                 {posts.map((post) => (
                     <article className='blog-post' key={post.id}>
