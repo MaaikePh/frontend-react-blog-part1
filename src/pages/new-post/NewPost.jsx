@@ -3,24 +3,60 @@ import {useForm} from 'react-hook-form';
 import InputComponent from '../../components/InputComponent.jsx';
 import readTime from '../../helpers/readTime.js';
 import countWords from '../../helpers/countWords.js';
-import {useNavigate} from 'react-router-dom';
+import axios from 'axios';
+import {useState} from 'react';
+import {Link} from 'react-router-dom';
 
 function NewPost() {
-    const navigate = useNavigate();
-    const {register, handleSubmit, formState: {errors}, watch} = useForm();
+    const [newPost, setNewPost] = useState(null);
+    const [error, toggleError] = useState(false);
+    const [loading, toggleLoading] = useState(false);
+    const {register, handleSubmit, formState: {errors}, watch, reset} = useForm();
     const contentValue = watch('content') || '';
     const wordCount = countWords(contentValue);
     const estimatedReadTime = readTime(wordCount);
 
-    function handleFormSubmit(data) {
-        data.shares = 0
-        data.comments = 0
-        const newDate = new Date();
-        data.created = newDate.toISOString();
-        data.readTime = estimatedReadTime;
-        console.log(data);
-        navigate('/overview');
+    async function handleFormSubmit(data) {
+        toggleLoading(true);
+        try {
+            toggleError(false);
+            const response = await axios.post('https://novi-backend-api-wgsgz.ondigitalocean.app/api/blogposts',
+                {
+                "title": data.title,
+                "subtitle": data.subtitle,
+                "content": data.content,
+                "created": new Date().toISOString(),
+                "author": data.author,
+                "readTime": estimatedReadTime,
+                "comments": 0,
+                "shares": 0
+            }, {
+                    headers: {
+                        'novi-education-project-id': '07470393-2b91-4dbf-92b8-976e6532490b',
+                        'Content-Type': 'application/json',
+                    },
+                }
+            )
+            console.log(response.data);
+            setNewPost(response.data);
+        } catch (error) {
+            console.error(error);
+            toggleError(true);
+        } finally {
+            toggleLoading(false);
+        }
     }
+
+    function handleNewPostAgain() {
+        setNewPost(null);
+        reset();
+    }
+
+    if (newPost) return <section className='success-message'>
+        <h1>De blogpost is succesvol toegevoegd.</h1>
+        <p>Je kunt deze <Link to={`/posts/${newPost.id}`} className='blog-links'>hier</Link> bekijken.</p>
+        <button type='button' className='submit-button' onClick={handleNewPostAgain}>Nog een post toevoegen</button>
+    </section>
 
     return (
         <section className='new-post'>
@@ -105,9 +141,11 @@ function NewPost() {
                     className='text-area-box'
                 />
 
-                <button type='submit' className='submit-button'>
+                <button type='submit' className='submit-button' disabled={loading===true}>
                     Toevoegen
                 </button>
+
+                {error && <p className='error-message'>Er is helaas iets misgegaan bij het verzenden. Probeer het opnieuw.</p>}
             </form>
         </section>
     )

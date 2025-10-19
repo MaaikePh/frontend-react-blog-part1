@@ -7,6 +7,10 @@
     color: var(--color-secondary);
 }
 
+.blog-page-title {
+    text-align: left;
+}
+
 .read-time {
     color: var(--color-tertiary);
     display: flex;
