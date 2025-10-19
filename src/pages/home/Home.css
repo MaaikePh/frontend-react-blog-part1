@@ -1,0 +1,16 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.home-image {
+    display: block;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.bottom-container {
+    display: flex;
+    justify-content: end;
+    margin-right: 50px;
+}

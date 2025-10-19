@@ -1,0 +1,48 @@
+.new-post {
+    background: var(--color-background);
+    padding: 15px 5px 25px 5px;
+}
+
+.add-blog-post-form {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin: 30px;
+    color: var(--color-tertiary);
+    font-weight: bold;
+}
+
+.submit-button {
+    height: 35px;
+    background-color: var(--color-primary);
+    border: none;
+    border-radius: 5px;
+    color: var(--color-secondary);
+    font-weight: bold;
+    margin-top: 10px;
+    padding: 0 10px;
+}
+
+.submit-button:hover {
+    background-color: var(--color-tertiary);
+    color: var(--color-white);
+}
+
+.submit-button:disabled {
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+}
+
+.error-message {
+    text-align: center;
+}
+
+.success-message {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    height: 50vh;
+}
